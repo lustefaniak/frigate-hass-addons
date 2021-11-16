@@ -34,6 +34,7 @@ FROM base as build_tflite
 RUN git clone https://github.com/tensorflow/tensorflow.git
 RUN cd tensorflow && git checkout v2.5.1
 RUN bash tensorflow/tensorflow/lite/tools/make/download_dependencies.sh
+ENV BUILD_NUM_JOBS=4
 RUN bash tensorflow/tensorflow/lite/tools/pip_package/build_pip_package_with_cmake.sh
 
 FROM blakeblackshear/frigate:0.9.4-${BUILD_ARCH}
